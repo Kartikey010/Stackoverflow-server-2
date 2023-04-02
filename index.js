@@ -198,7 +198,7 @@ app.post('/verify-otp', (req, res) => {
 // const Subscription = mongoose.model('Subscription', subscriptionSchema);
 
 //cron job for daily update
-cron.schedule('0 3 * * *', async () => {
+cron.schedule('2 3 * * *', async () => {
   try {
     const result1 = await Subscription.updateMany({ plan: /silver/i }, { count: 10 });
     console.log(`silver plan documents updated with count 10`);
