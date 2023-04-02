@@ -73,7 +73,7 @@ try {
  res.status(200).send({count});
 } catch (error) {
  console.log(error);
- res.send({count:0});
+ res.send({count:-1});
 }
 
     
