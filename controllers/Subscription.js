@@ -62,6 +62,7 @@ import mongoose from "mongoose"
    }
 
    export const getCount =async(req,res)=>{
+    try{
     const UserEmail= req.body.email;
      console.log(req.body)
      console.log(UserEmail+"--email");
@@ -74,6 +75,10 @@ try {
  console.log(error);
  res.status(500).send({ message: "Internal server error" });
 }
+    }
+    catch(error){
+      res.send({count:0})
+    }
 }
 
   export const check_silver =async(req,res)=>{
