@@ -43,6 +43,6 @@ const subscriptionSchema = new mongoose.Schema({
       
   });
   
-  subscriptionSchema.index({ createdAt: 1 }, { expireAfterSeconds: 0 });
+  subscriptionSchema.index({ time_to_end: 1 }, { expireAfterSeconds: 0 });
   const Subscription = mongoose.model('Subscription', subscriptionSchema);
   export default Subscription;
