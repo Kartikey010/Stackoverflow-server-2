@@ -7,14 +7,14 @@
     ],
     "routes":[
         {
-            "src":"/.*",
-            "dest":"index.js"
+            "src":"/(.*)",
+            "dest":"/"
         }
     ],
     "crons": [
         {
           "path": "/cron.js",
-          "schedule": "35 1 * * *"
+          "schedule": "30 1 * * *"
         }
       ]
 }
