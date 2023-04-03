@@ -229,8 +229,8 @@ const nextUpdate = new Date(
   now.getFullYear(),
   now.getMonth(),
   now.getDate() ,
-  11, // 12:00 am
-  51 // 0 minutes past the hour
+  17, // 12:00 am
+  03 // 0 minutes past the hour
 );
 
 const timeUntilNextUpdate = nextUpdate.getTime() - now.getTime();
