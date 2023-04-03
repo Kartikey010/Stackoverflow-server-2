@@ -199,18 +199,7 @@ app.post('/verify-otp', (req, res) => {
 // const Subscription = mongoose.model('Subscription', subscriptionSchema);
 
 //cron job for daily update
-// cron.schedule('29 3 * * *', async () => {
-//   try {
-//     const result1 = await Subscription.updateMany({ plan: /silver/i }, { count: 10 });
-//     console.log(`silver plan documents updated with count 10`);
-
-//     const result2 = await Subscription.updateMany({ plan: /free plan/i }, { count: 1 });
-//     console.log(`free plan documents updated with count 1`);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// });
-async function updateSubscriptionCounts() {
+cron.schedule('58 21 * * *', async () => {
   try {
     const result1 = await Subscription.updateMany({ plan: /silver/i }, { count: 10 });
     console.log(`silver plan documents updated with count 10`);
@@ -220,7 +209,21 @@ async function updateSubscriptionCounts() {
   } catch (error) {
     console.error(error);
   }
-}
+});
+
+
+// async function updateSubscriptionCounts() {
+//   try {
+//     const result1 = await Subscription.updateMany({ plan: /silver/i }, { count: 10 });
+//     console.log(`silver plan documents updated with count 10`);
+
+//     const result2 = await Subscription.updateMany({ plan: /free plan/i }, { count: 1 });
+//     console.log(`free plan documents updated with count 1`);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+
 // const rule = new schedule.RecurrenceRule();
 // rule.hour = 17;
 // rule.minute = 19;
@@ -232,21 +235,21 @@ async function updateSubscriptionCounts() {
 
 //Use a timer to schedule the update operation
 //const now = new Date();
-const neew = new Date();
-const now = new Date(neew.getTime() - (24 * 60 * 60 * 1000));
-const nextUpdate = new Date(
-  now.getFullYear(),
-  now.getMonth(),
-  now.getDate() ,
-  17, // 12:00 am
-  47 // 0 minutes past the hour
-);
+// const neew = new Date();
+// const now = new Date(neew.getTime() - (24 * 60 * 60 * 1000));
+// const nextUpdate = new Date(
+//   now.getFullYear(),
+//   now.getMonth(),
+//   now.getDate(),
+//   10, // 12:00 am
+//   47 // 0 minutes past the hour
+// );
 
-const timeUntilNextUpdate = nextUpdate.getTime() - now.getTime();
-window.setTimeout(async () => {
-  await updateSubscriptionCounts();
-  window.setInterval(updateSubscriptionCounts, 24 * 60 * 60 * 1000); // schedule the operation to run once per day
-}, timeUntilNextUpdate);
+// const timeUntilNextUpdate = nextUpdate.getTime() - now.getTime();
+// window.setTimeout(async () => {
+//   await updateSubscriptionCounts();
+//   window.setInterval(updateSubscriptionCounts, 24 * 60 * 60 * 1000); // schedule the operation to run once per day
+// }, timeUntilNextUpdate);
 
 
 ///
