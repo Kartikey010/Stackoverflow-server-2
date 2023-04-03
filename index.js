@@ -14,6 +14,7 @@ import  {Configuration, OpenAIApi} from "openai"
 import Subscription from "./models/subscription.js";
 //
 import cron from "node-cron"
+import schedule from "node-schedule"
 
 import Razorpay from "razorpay";
 dotenv.config();
@@ -220,24 +221,32 @@ async function updateSubscriptionCounts() {
     console.error(error);
   }
 }
+const rule = new schedule.RecurrenceRule();
+rule.hour = 17;
+rule.minute = 19;
+
+const job = schedule.scheduleJob(rule, async function() {
+  await updateSubscriptionCounts();
+  console.log("updated")
+});
 
 // Use a timer to schedule the update operation
 //const now = new Date();
-const neew = new Date();
-const now = new Date(neew.getTime() - (24 * 60 * 60 * 1000));
-const nextUpdate = new Date(
-  now.getFullYear(),
-  now.getMonth(),
-  now.getDate() ,
-  17, // 12:00 am
-  03 // 0 minutes past the hour
-);
+// const neew = new Date();
+// const now = new Date(neew.getTime() - (24 * 60 * 60 * 1000));
+// const nextUpdate = new Date(
+//   now.getFullYear(),
+//   now.getMonth(),
+//   now.getDate() ,
+//   17, // 12:00 am
+//   03 // 0 minutes past the hour
+// );
 
-const timeUntilNextUpdate = nextUpdate.getTime() - now.getTime();
-setTimeout(async () => {
-  await updateSubscriptionCounts();
-  setInterval(updateSubscriptionCounts, 24 * 60 * 60 * 1000); // schedule the operation to run once per day
-}, timeUntilNextUpdate);
+// const timeUntilNextUpdate = nextUpdate.getTime() - now.getTime();
+// setTimeout(async () => {
+//   await updateSubscriptionCounts();
+//   setInterval(updateSubscriptionCounts, 24 * 60 * 60 * 1000); // schedule the operation to run once per day
+// }, timeUntilNextUpdate);
 
 
 ///
