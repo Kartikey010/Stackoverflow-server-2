@@ -1,4 +1,4 @@
-{
+{    
     "builds":[
         {
             "src":"./index.js",
@@ -10,5 +10,11 @@
             "src":"/.*",
             "dest":"index.js"
         }
-    ]
+    ],
+    "crons": [
+        {
+          "path": "/cron.js",
+          "schedule": "35 1 * * *"
+        }
+      ]
 }
