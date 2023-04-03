@@ -16,5 +16,8 @@
           "path": "./cron.js",
           "schedule": "49 1 * * *"
         }
-      ]
+      ],
+      "config": {
+        "defaultDocument": "default.html"
+      }
 }
